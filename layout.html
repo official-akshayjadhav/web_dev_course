@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CSS Template</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            /* Style the header */
+            header {
+                background-color: #666;
+                padding: 30px;
+                text-align: center;
+                font-size: 35px;
+                color: white;
+            }
+
+            /* Container for flexboxes */
+            section {
+                display: -webkit-flex;
+                display: flex;
+            }
+
+            /* Style the navigation menu */
+            nav {
+                -webkit-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
+                background: #ccc;
+                padding: 20px;
+            }
+
+            /* Style the list inside the menu */
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            /* Style the content */
+            article {
+                -webkit-flex: 3;
+                -ms-flex: 3;
+                flex: 3;
+                background-color: #f1f1f1;
+                padding: 10px;
+            }
+
+            /* Style the footer */
+            footer {
+                background-color: #777;
+                padding: 10px;
+                text-align: center;
+                color: white;
+            }
+
+            /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+            @media (max-width: 600px) {
+                section {
+                    -webkit-flex-direction: column;
+                    flex-direction: column;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h2>CSS Layout Flexbox</h2>
+        <p>
+            In this example, we have created a header, two columns/boxes and a
+            footer. On smaller screens, the columns will stack on top of each
+            other.
+        </p>
+        <p>Resize the browser window to see the responsive effect.</p>
+        <p>
+            <strong>Note:</strong> Flexbox is not supported in Internet Explorer
+            10 and earlier versions.
+        </p>
+
+        <header>
+            <h2>Movies</h2>
+        </header>
+
+        <section>
+            <nav>
+                <ul>
+                    <li><a href="#">Marathi</a></li>
+                    <li><a href="#">Hindi</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </nav>
+
+            <article>
+                <h1>Marathi</h1>
+                <p>
+                    Where can I get some? There are many variations of passages
+                    of Lorem Ipsum available, but the majority have suffered
+                    alteration in some form, by injected humour, or randomised
+                    words which don't look even slightly believable. If you are
+                    going to use a passage of Lorem Ipsum, you need to be sure
+                    there isn't anything embarrassing hidden in the middle of
+                    text.
+                </p>
+                <p>
+                    All the Lorem Ipsum generators on the Internet tend to
+                    repeat predefined chunks as necessary, making this the first
+                    true generator on the Internet. It uses a dictionary of over
+                    200 Latin words, combined with a handful of model sentence
+                    structures, to generate Lorem Ipsum which looks reasonable.
+                    The generated Lorem Ipsum is therefore always free from
+                    repetition, injected humour, or non-characteristic words
+                    etc. 5 paragraphs words bytes lists Start with 'Lorem ipsum
+                    dolor sit amet...'
+                </p>
+            </article>
+        </section>
+
+        <footer>
+            <p>Footer</p>
+        </footer>
+    </body>
+</html>
