@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AJAX Example</title>
+    </head>
+    <body>
+        <main>
+            <div>
+                <form action="#">
+                    <input type="text" name="name" placeholder="enter name" />
+                    <input
+                        type="text"
+                        name="job"
+                        placeholder="enter job title"
+                    />
+                    <button onclick="createUser()">create user</button>
+                </form>
+                <h2>user data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>first name</th>
+                            <th>last name</th>
+                            <th>email</th>
+                            <th>image</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </main>
+        <script>
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "https://reqres.in/api/users?page=2");
+
+            xhr.onload = function () {
+                if (xhr.status !== 200) {
+                    document.getElementById("tbody").innerHTML =
+                        '<tr><td colspan="5">bad request</td></tr>';
+                    return;
+                }
+                // code for valid response
+                console.log("JSON Text:", xhr.responseText);
+                // convert json text into JSON
+                var data = JSON.parse(xhr.responseText);
+                console.log("JSON:", data);
+
+                // parse every user and present
+                var userHTML = "";
+                for (var i = 0; i < data.data.length; i++) {
+                    userHTML +=
+                        "<tr><td>" +
+                        data.data[i].id +
+                        "</td><td>" +
+                        data.data[i].first_name +
+                        "</td><td>" +
+                        data.data[i].last_name +
+                        "</td><td>" +
+                        data.data[i].email +
+                        '</td><td><img src="' +
+                        data.data[i].avatar +
+                        '" width="100" height="100">' +
+                        "</td></tr>";
+                }
+                document.getElementById("tbody").innerHTML = userHTML;
+            };
+            xhr.send();
+
+            // function to create user
+            function createUser() {
+                // 1. read values from input field
+                var userData = {
+                    name: document.getElementsByName("name")[0].value,
+                    job: document.getElementsByName("job")[0].value,
+                };
+
+                // 2. send req. to server
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "https://reqres.in/api/users");
+                xhr.setRequestHeader("cache-control", "no-cache");
+
+                xhr.addEventListener("readystatechange", function () {
+                    console.log(this.readyState);
+                    if (this.readyState === 4) {
+                        console.log(this.responseText);
+                    }
+                });
+                xhr.send(userData);
+            }
+        </script>
+    </body>
+</html>

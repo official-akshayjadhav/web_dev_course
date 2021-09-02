@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login form</title>
+    </head>
+    <body>
+        <h1 id="h1">login form</h1>
+        <form>
+            <input type="number" min="10" max="20" />
+            <label>user name</label>
+            <input type="text" id="userName" onchange="unameValidation()" />
+            <label>password</label>
+            <input type="password" id="password" />
+            <input
+                type="submit"
+                value="submit"
+                id="submit"
+                onmouseover="onMouseOverFun()"
+                onmouseout="onMouseOutFun()"
+            />
+            <button onClick="loginProcess()" id="button">login</button>
+        </form>
+
+        <script>
+            document.getElementById("userName").style.borderColor = "red";
+
+            function onMouseOverFun() {
+                document.getElementById("submit").style.backgroundColor =
+                    "yellow";
+            }
+            function onMouseOutFun() {
+                document.getElementById("submit").style.backgroundColor =
+                    "#efefef";
+            }
+            function unameValidation() {
+                var userName = document.getElementById("userName").value;
+                if (userName.length < 6) {
+                    document.getElementById("userName").style.borderColor =
+                        "red";
+                } else {
+                    document.getElementById("userName").style.borderColor =
+                        "green";
+                }
+            }
+            function loginProcess() {
+                var userName = document.getElementById("userName").value;
+                var password = document.getElementById("password").value;
+
+                console.log("username: ", userName);
+                console.log("password: ", password);
+                if (userName === "admin" && password === "Admin") {
+                    console.log("login successful");
+                    document.getElementById("h1").innerHTML =
+                        "Login successful";
+                    document.getElementById("button").style.backgroundColor =
+                        "green";
+                } else {
+                    console.log("invalid cred.");
+                    alert("invalid credentials");
+                    document.getElementById("button").style.backgroundColor =
+                        "green";
+                }
+            }
+        </script>
+    </body>
+</html>
